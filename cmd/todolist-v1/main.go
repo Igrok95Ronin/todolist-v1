@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/config"
+	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
@@ -13,17 +13,20 @@ func main() {
 	// Загружаем конфигурацию
 	cfg := config.GetConfig()
 
+	// Загружаем логгер
+	logger := logging.GetLogger()
+
 	router := httprouter.New()
 	router.GET("/", Home)
 
-	start(router, cfg)
+	start(router, cfg, logger)
 }
 
 func Home(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	w.Write([]byte("Home"))
 }
 
-func start(router *httprouter.Router, cfg *config.Config) {
+func start(router *httprouter.Router, cfg *config.Config, logger *logging.Logger) {
 	const timeout = 15 * time.Second
 
 	server := &http.Server{
@@ -34,6 +37,6 @@ func start(router *httprouter.Router, cfg *config.Config) {
 		IdleTimeout:  timeout,
 	}
 
-	fmt.Printf("Сервер запущен на %v", cfg.Port)
+	logger.Infof("Сервер запущен на %v", cfg.Port)
 	log.Fatal(server.ListenAndServe())
 }
