@@ -10,5 +10,6 @@
 # Useful commands
     1 mkdir, mkdir-p
     2 mkdir -p cmd/todolist-v1 && touch cmd/todolist-v1/main.go
-    3 
+    3 curl -sL https://www.toptal.com/developers/gitignore/api/go > .gitignore
+
 
