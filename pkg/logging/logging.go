@@ -62,12 +62,16 @@ func GetLogger() *Logger {
 
 		// 2. Устанавливаем формат вывода
 		l.Formatter = &logrus.TextFormatter{
+			FullTimestamp:   true,
+			TimestampFormat: "2006-01-02 15:04:05",
+			DisableColors:   false,
+			ForceColors:     true,
+			PadLevelText:    true,
+			DisableQuote:    true,
 			CallerPrettyfier: func(frame *runtime.Frame) (string, string) {
 				filename := path.Base(frame.File)
 				return fmt.Sprintf("%s()", frame.Function), fmt.Sprintf("%s:%d", filename, frame.Line)
 			},
-			ForceColors:   true, // Цветной вывод в консоль
-			FullTimestamp: true, // Показывать дату и время
 		}
 
 		// 3. Создаём директорию для логов (если её нет)
