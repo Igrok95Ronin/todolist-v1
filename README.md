@@ -5,9 +5,13 @@
     3 Добавить роутер httprouter +
     4 Добавить конфиг Clean Env +
     5 Добавить логгер Logrus +
-    6 Убрать артифакты из all.logs - 
-    7 Перенести хандлеры
-    8
+    6 Убрать артифакты из all.logs + 
+    7 Перенести хандлеры +
+    7.1 Сделать Инкапсуляцию -
+    7.2 Сделать расширяемость (Functional Options Pattern)
+    8 Подключить БД
+    9 Добавить Middleware context
+    10 
 
 # Useful commands
     1 mkdir, mkdir-p

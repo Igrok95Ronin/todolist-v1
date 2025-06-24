@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/config"
+	"github.com/Igrok95Ronin/todolist-v1.git/internal/handlers"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	"github.com/julienschmidt/httprouter"
 	"log"
@@ -16,14 +17,14 @@ func main() {
 	// Загружаем логгер
 	logger := logging.GetLogger()
 
+	// Создаем роутер
 	router := httprouter.New()
-	router.GET("/", Home)
+
+	// Инициализируем обработчики (handlers) и передаем им зависимости
+	handler := handlers.NewHandler(cfg, logger)
+	handler.RegisterRoutes(router)
 
 	start(router, cfg, logger)
-}
-
-func Home(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	w.Write([]byte("Home"))
 }
 
 func start(router *httprouter.Router, cfg *config.Config, logger *logging.Logger) {
@@ -39,4 +40,5 @@ func start(router *httprouter.Router, cfg *config.Config, logger *logging.Logger
 
 	logger.Infof("Сервер запущен на %v", cfg.Port)
 	log.Fatal(server.ListenAndServe())
+
 }
