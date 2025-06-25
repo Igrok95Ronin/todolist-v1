@@ -8,7 +8,8 @@ import (
 
 // Структура конфигурации
 type Config struct {
-	Port string `yaml:"port"`
+	Port   string `yaml:"port"`
+	DBPath string `yaml:"DBPath"`
 }
 
 // Глобальная переменная для хранения конфигурации

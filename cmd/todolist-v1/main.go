@@ -6,21 +6,30 @@ import (
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/repository"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	"github.com/julienschmidt/httprouter"
-	"log"
 	"net/http"
 	"time"
 )
 
 func main() {
-	// Загружаем конфигурацию
+	// Подтягиваем конфигурацию
 	cfg := config.GetConfig()
 
-	// Загружаем логгер
+	// Подтягиваем логгер
 	logger := logging.GetLogger()
 
 	// Инициализируем базу данных (в слое repository)
-	_, err := repository.GetDB()
+	db := repository.NewDB(
+		repository.WithConfig(cfg),
+		repository.WithLogger(logger),
+	)
+	sqlDB, err := db.Connect()
 	if err != nil {
+		logger.Fatal(err)
+	}
+	defer db.Close()
+
+	// Подтягиваем миграции
+	if err = repository.InitSchema(sqlDB); err != nil {
 		logger.Fatal(err)
 	}
 
@@ -37,6 +46,7 @@ func main() {
 	}
 	handler.RegisterRoutes(router)
 
+	// Запускаем сервер
 	start(router, cfg, logger)
 }
 
@@ -52,6 +62,6 @@ func start(router *httprouter.Router, cfg *config.Config, logger *logging.Logger
 	}
 
 	logger.Infof("Сервер запущен на %v", cfg.Port)
-	log.Fatal(server.ListenAndServe())
+	logger.Fatal(server.ListenAndServe())
 
 }

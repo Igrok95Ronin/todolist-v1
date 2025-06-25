@@ -44,3 +44,15 @@ time="2025-06-23T21:35:24+03:00" level=info msg="Сервер запущен н�
 [36mINFO   [0m[2025-06-25 19:31:14]main.go:54 main.start() Сервер запущен на :8080                      
 [36mINFO   [0m[2025-06-25 19:36:26]main.go:54 main.start() Сервер запущен на :8080                      
 [36mINFO   [0m[2025-06-25 19:43:26]main.go:54 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 19:43:49]main.go:54 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 20:54:30]main.go:59 main.start() Сервер запущен на :8080                      
+[31mFATAL  [0m[2025-06-25 20:54:41]main.go:29 main.main() ошибка выполнения миграции 002_insert_data.sql: constraint failed: UNIQUE constraint failed: users.email (2067) 
+[31mFATAL  [0m[2025-06-25 20:55:57]main.go:29 main.main() ошибка выполнения миграции 002_insert_data.sql: constraint failed: UNIQUE constraint failed: users.email (2067) 
+[36mINFO   [0m[2025-06-25 20:57:59]main.go:59 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 21:05:50]main.go:60 main.start() Сервер запущен на :8080                      
+[31mFATAL  [0m[2025-06-25 21:15:39]main.go:30 main.main() ошибка выполнения миграции 001_create_tables.sql: sql: database is closed 
+[36mINFO   [0m[2025-06-25 21:15:57]main.go:61 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 21:25:31]main.go:60 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 21:25:42]main.go:60 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 21:29:05]db.go:38 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.GetDB.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-25 21:29:05]main.go:60 main.start() Сервер запущен на :8080                      

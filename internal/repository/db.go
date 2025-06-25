@@ -3,49 +3,73 @@ package repository
 import (
 	"database/sql"
 	"fmt"
-	"log"
+	"github.com/Igrok95Ronin/todolist-v1.git/internal/config"
+	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	_ "modernc.org/sqlite"
 	"sync"
 )
 
-var (
-	dbInstance *sql.DB
-	once       sync.Once
-	dbErr      error
-)
+type DB struct {
+	instance *sql.DB
+	once     sync.Once
+	err      error
+	cfg      *config.Config
+	logger   *logging.Logger
+}
 
-// GetDB возвращает Singleton-подключение к SQLite
-func GetDB() (*sql.DB, error) {
-	once.Do(func() {
+type DBOption func(*DB)
+
+func NewDB(option ...DBOption) *DB {
+	db := &DB{}
+
+	for _, opt := range option {
+		opt(db)
+	}
+
+	return db
+}
+
+// With Функции-опции
+func WithConfig(cfg *config.Config) DBOption {
+	return func(d *DB) {
+		d.cfg = cfg
+	}
+}
+
+func WithLogger(logger *logging.Logger) DBOption {
+	return func(d *DB) {
+		d.logger = logger
+	}
+}
+
+// Connect возвращает Singleton-подключение к SQLite
+func (d *DB) Connect() (*sql.DB, error) {
+	d.once.Do(func() {
 		// В SQLite просто указываем путь к файлу базы данных
-		// TODO: вынести в конфиг
-		dbPath := "./db.sqlite"
-
 		// TODO: вынести ошиби
-		dbInstance, dbErr = sql.Open("sqlite", dbPath)
-		if dbErr != nil {
-			dbErr = fmt.Errorf("ошибка открытия SQLite: %w", dbErr)
+		d.instance, d.err = sql.Open("sqlite", d.cfg.DBPath)
+		if d.err != nil {
+			d.err = fmt.Errorf("ошибка открытия SQLite: %w", d.err)
 			return
 		}
 
 		// Проверим соединение
-		if err := dbInstance.Ping(); err != nil {
-			dbInstance.Close()
-			dbErr = fmt.Errorf("не удалось подключиться к SQLite: %w", err)
+		if err := d.instance.Ping(); err != nil {
+			d.instance.Close()
+			d.err = fmt.Errorf("не удалось подключиться к SQLite: %w", err)
 			return
 		}
 
-		// TODO: сделать логирование
-		log.Println("✅ Подключение к SQLite установлено")
+		d.logger.Info("✅ Подключение к SQLite установлено")
 	})
 
-	return dbInstance, dbErr
+	return d.instance, d.err
 }
 
 // CloseDB закрывает SQLite соединение
-func CloseDB() {
-	if dbInstance != nil {
-		dbInstance.Close()
-		log.Println("🔌 SQLite подключение закрыто")
+func (d *DB) Close() {
+	if d.instance != nil {
+		d.instance.Close()
+		d.logger.Info("🔌 SQLite подключение закрыто")
 	}
 }
