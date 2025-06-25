@@ -11,3 +11,36 @@ time="2025-06-23T21:35:24+03:00" level=info msg="Сервер запущен н�
 [36mINFO   [0m[2025-06-24 20:42:49]main.go:41 main.start() Сервер запущен на :8080                      
 [36mINFO   [0m[2025-06-24 20:45:39]main.go:42 main.start() Сервер запущен на :8080                      
 [36mINFO   [0m[2025-06-24 20:49:29]main.go:43 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:03:45]main.go:44 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:18:11]main.go:44 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:18:32]main.go:43 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:18:45]main.go:41 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:19:12]main.go:41 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:19:33]main.go:41 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:20:00]main.go:43 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:20:01]router.go:70 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*Handler).Home() hiihi                                        
+[36mINFO   [0m[2025-06-24 21:20:21]main.go:41 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:20:37]main.go:41 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:20:51]main.go:41 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:23:30]main.go:44 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:26:12]main.go:44 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:26:14]router.go:70 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*Handler).Home() hiihi                                        
+[36mINFO   [0m[2025-06-24 21:28:06]main.go:47 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:32:31]main.go:47 main.start() Сервер запущен на :8080                      
+[31mERROR  [0m[2025-06-24 21:32:41]main.go:28 main.main() config is required                           
+[36mINFO   [0m[2025-06-24 21:32:41]main.go:46 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:57:24]main.go:46 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-24 21:59:27]main.go:47 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 19:07:42]main.go:47 main.start() Сервер запущен на :8080                      
+[31mFATAL  [0m[2025-06-25 19:23:31]main.go:24 main.main() ошибка открытия SQLite: sql: unknown driver "sqlite3" (forgotten import?) 
+[31mFATAL  [0m[2025-06-25 19:24:05]main.go:24 main.main() не удалось подключиться к SQLite: Binary was compiled with 'CGO_ENABLED=0', go-sqlite3 requires cgo to work. This is a stub 
+[31mFATAL  [0m[2025-06-25 19:26:19]main.go:24 main.main() не удалось подключиться к SQLite: Binary was compiled with 'CGO_ENABLED=0', go-sqlite3 requires cgo to work. This is a stub 
+[31mFATAL  [0m[2025-06-25 19:26:23]main.go:24 main.main() не удалось подключиться к SQLite: Binary was compiled with 'CGO_ENABLED=0', go-sqlite3 requires cgo to work. This is a stub 
+[31mFATAL  [0m[2025-06-25 19:27:35]main.go:24 main.main() не удалось подключиться к SQLite: Binary was compiled with 'CGO_ENABLED=0', go-sqlite3 requires cgo to work. This is a stub 
+[31mFATAL  [0m[2025-06-25 19:27:38]main.go:24 main.main() не удалось подключиться к SQLite: Binary was compiled with 'CGO_ENABLED=0', go-sqlite3 requires cgo to work. This is a stub 
+[36mINFO   [0m[2025-06-25 19:30:01]main.go:54 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 19:30:30]main.go:54 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 19:30:58]main.go:54 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 19:31:14]main.go:54 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 19:36:26]main.go:54 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 19:43:26]main.go:54 main.start() Сервер запущен на :8080                      

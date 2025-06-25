@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/config"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/handlers"
+	"github.com/Igrok95Ronin/todolist-v1.git/internal/repository"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	"github.com/julienschmidt/httprouter"
 	"log"
@@ -17,11 +18,23 @@ func main() {
 	// Загружаем логгер
 	logger := logging.GetLogger()
 
+	// Инициализируем базу данных (в слое repository)
+	_, err := repository.GetDB()
+	if err != nil {
+		logger.Fatal(err)
+	}
+
 	// Создаем роутер
 	router := httprouter.New()
 
 	// Инициализируем обработчики (handlers) и передаем им зависимости
-	handler := handlers.NewHandler(cfg, logger)
+	handler, err := handlers.NewHandler(
+		handlers.WithConfig(cfg),
+		handlers.WithLogger(logger),
+	)
+	if err != nil {
+		logger.Error(err)
+	}
 	handler.RegisterRoutes(router)
 
 	start(router, cfg, logger)

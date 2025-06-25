@@ -4,7 +4,6 @@ import (
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/config"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	"github.com/julienschmidt/httprouter"
-	"net/http"
 )
 
 // Handler управляет роутами
@@ -13,13 +12,25 @@ type Handler struct {
 	logger *logging.Logger
 }
 
+type HandlerOption func(*Handler)
+
 // NOTE: добавить инкопсюляцию и функциональные параметры
 // NewHandler создаёт новый обработчик
-func NewHandler(cfg *config.Config, logger *logging.Logger) *Handler {
+func NewHandler(option ...HandlerOption) (*Handler, error) {
 	h := &Handler{}
-	h.SetConfig(cfg)
-	h.SetLogger(logger)
-	return h
+
+	for _, opt := range option {
+		opt(h)
+	}
+
+	//if h.logger == nil {
+	//	return nil, fmt.Errorf("logger is required")
+	//}
+	//if h.cfg == nil {
+	//	return nil, fmt.Errorf("config is required")
+	//}
+
+	return h, nil
 }
 
 // Set Сеттеры с логикой
@@ -40,12 +51,20 @@ func (h *Handler) Logger() *logging.Logger {
 	return h.logger
 }
 
-// RegisterRoutes регистрирует маршруты
-func (h *Handler) RegisterRoutes(router *httprouter.Router) {
-	router.GET("/", h.Home)
+// With Функции-опции
+func WithConfig(cfg *config.Config) HandlerOption {
+	return func(h *Handler) {
+		h.SetConfig(cfg)
+	}
 }
 
-func (h *Handler) Home(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	w.Write([]byte("Home"))
+func WithLogger(logger *logging.Logger) HandlerOption {
+	return func(h *Handler) {
+		h.SetLogger(logger)
+	}
+}
 
+// RegisterRoutes регистрирует маршруты
+func (h *Handler) RegisterRoutes(router *httprouter.Router) {
+	router.GET("/register", h.register)
 }
