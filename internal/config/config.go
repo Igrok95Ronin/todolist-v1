@@ -27,7 +27,7 @@ func GetConfig() *Config {
 
 	once.Do(func() {
 		configInstance = &Config{}
-
+		//TODO: вынести в конфиг путь
 		if err := cleanenv.ReadConfig("./config.yml", configInstance); err != nil {
 			help, _ := cleanenv.GetDescription(configInstance, nil)
 			fmt.Println(help)

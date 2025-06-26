@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/config"
+	"github.com/Igrok95Ronin/todolist-v1.git/internal/errors"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	_ "modernc.org/sqlite"
 	"sync"
@@ -49,14 +50,14 @@ func (d *DB) Connect() (*sql.DB, error) {
 		// TODO: вынести ошиби
 		d.instance, d.err = sql.Open("sqlite", d.cfg.DBPath)
 		if d.err != nil {
-			d.err = fmt.Errorf("ошибка открытия SQLite: %w", d.err)
+			d.err = fmt.Errorf("%w: %v", errors.ErrDBOpen, d.err)
 			return
 		}
 
 		// Проверим соединение
 		if err := d.instance.Ping(); err != nil {
 			d.instance.Close()
-			d.err = fmt.Errorf("не удалось подключиться к SQLite: %w", err)
+			d.err = fmt.Errorf("%w: %v", errors.ErrDBPing, err)
 			return
 		}
 

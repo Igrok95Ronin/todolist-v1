@@ -56,3 +56,7 @@ time="2025-06-23T21:35:24+03:00" level=info msg="Сервер запущен н�
 [36mINFO   [0m[2025-06-25 21:25:42]main.go:60 main.start() Сервер запущен на :8080                      
 [36mINFO   [0m[2025-06-25 21:29:05]db.go:38 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.GetDB.func1() ✅ Подключение к SQLite установлено           
 [36mINFO   [0m[2025-06-25 21:29:05]main.go:60 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-25 21:52:48]db.go:63 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-25 21:52:48]main.go:64 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-26 19:05:36]db.go:63 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 19:05:36]main.go:64 main.start() Сервер запущен на :8080                      
