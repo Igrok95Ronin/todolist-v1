@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"database/sql"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/config"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	"github.com/julienschmidt/httprouter"
@@ -10,11 +11,11 @@ import (
 type Handler struct {
 	cfg    *config.Config
 	logger *logging.Logger
+	db     *sql.DB
 }
 
 type HandlerOption func(*Handler)
 
-// NOTE: добавить инкопсюляцию и функциональные параметры
 // NewHandler создаёт новый обработчик
 func NewHandler(option ...HandlerOption) (*Handler, error) {
 	h := &Handler{}
@@ -33,7 +34,7 @@ func NewHandler(option ...HandlerOption) (*Handler, error) {
 	return h, nil
 }
 
-// Set Сеттеры с логикой
+// NOTE: Set Сеттеры с логикой
 func (h *Handler) SetConfig(cfg *config.Config) {
 	h.cfg = cfg
 }
@@ -42,7 +43,11 @@ func (h *Handler) SetLogger(logger *logging.Logger) {
 	h.logger = logger
 }
 
-// Get Геттеры
+func (h *Handler) SetDB(db *sql.DB) {
+	h.db = db
+}
+
+// NOTE: Get Геттеры
 func (h *Handler) Cfg() *config.Config {
 	return h.cfg
 }
@@ -51,7 +56,11 @@ func (h *Handler) Logger() *logging.Logger {
 	return h.logger
 }
 
-// With Функции-опции
+func (h *Handler) DB() *sql.DB {
+	return h.db
+}
+
+// NOTE: With Функции-опции
 func WithConfig(cfg *config.Config) HandlerOption {
 	return func(h *Handler) {
 		h.SetConfig(cfg)
@@ -61,6 +70,12 @@ func WithConfig(cfg *config.Config) HandlerOption {
 func WithLogger(logger *logging.Logger) HandlerOption {
 	return func(h *Handler) {
 		h.SetLogger(logger)
+	}
+}
+
+func WithDB(db *sql.DB) HandlerOption {
+	return func(h *Handler) {
+		h.SetDB(db)
 	}
 }
 

@@ -60,3 +60,28 @@ time="2025-06-23T21:35:24+03:00" level=info msg="Сервер запущен н�
 [36mINFO   [0m[2025-06-25 21:52:48]main.go:64 main.start() Сервер запущен на :8080                      
 [36mINFO   [0m[2025-06-26 19:05:36]db.go:63 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
 [36mINFO   [0m[2025-06-26 19:05:36]main.go:64 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-26 20:25:45]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 20:25:45]main.go:64 main.start() Сервер запущен на :8080                      
+[36mINFO   [0m[2025-06-26 20:35:05]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 20:35:05]main.go:64 main.start() Сервер запущен на порту: :8080               
+[33mWARNING[0m[2025-06-26 20:35:15]user_handler.go:12 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*Handler).register() TESTSTWET                                    
+[36mINFO   [0m[2025-06-26 20:41:57]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 20:41:57]main.go:64 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-26 20:46:23]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 20:46:23]main.go:66 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-26 20:56:29]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 20:56:29]main.go:66 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-26 20:57:05]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 20:57:05]main.go:66 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-26 20:57:46]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 20:57:46]main.go:66 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-26 20:58:32]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 20:58:32]main.go:66 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-26 20:59:04]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 20:59:04]main.go:66 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-26 20:59:16]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 20:59:16]main.go:66 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-26 21:13:21]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 21:13:21]main.go:66 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-26 21:35:16]db.go:64 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-26 21:35:16]main.go:69 main.start() Сервер запущен на порту: :8080               

@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/config"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/handlers"
+	"github.com/Igrok95Ronin/todolist-v1.git/internal/middleware"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/repository"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	"github.com/julienschmidt/httprouter"
@@ -40,17 +41,21 @@ func main() {
 	handler, err := handlers.NewHandler(
 		handlers.WithConfig(cfg),
 		handlers.WithLogger(logger),
+		handlers.WithDB(sqlDB),
 	)
 	if err != nil {
 		logger.Error(err)
 	}
 	handler.RegisterRoutes(router)
 
+	// Обработка cors, Context
+	corsHandler := middleware.CorsSettings().Handler(middleware.RequestContext(router))
 	// Запускаем сервер
-	start(router, cfg, logger)
+	start(corsHandler, cfg, logger)
+
 }
 
-func start(router *httprouter.Router, cfg *config.Config, logger *logging.Logger) {
+func start(router http.Handler, cfg *config.Config, logger *logging.Logger) {
 	const timeout = 15 * time.Second
 
 	server := &http.Server{
@@ -61,7 +66,7 @@ func start(router *httprouter.Router, cfg *config.Config, logger *logging.Logger
 		IdleTimeout:  timeout,
 	}
 
-	logger.Infof("Сервер запущен на %v", cfg.Port)
+	logger.Infof("Сервер запущен на порту: %v", cfg.Port)
 	logger.Fatal(server.ListenAndServe())
 
 }

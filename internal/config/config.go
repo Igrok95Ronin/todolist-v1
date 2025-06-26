@@ -3,6 +3,8 @@ package config
 import (
 	"fmt"
 	"github.com/ilyakaznacheev/cleanenv"
+	"github.com/joho/godotenv"
+	"os"
 	"sync"
 )
 
@@ -10,6 +12,12 @@ import (
 type Config struct {
 	Port   string `yaml:"port"`
 	DBPath string `yaml:"DBPath"`
+	Token  Token  `yaml:"token"`
+}
+
+type Token struct {
+	Access  string `yaml:"access"`
+	Refresh string `yaml:"refresh"`
 }
 
 // Глобальная переменная для хранения конфигурации
@@ -21,9 +29,9 @@ var (
 // Функция получения конфигурации
 func GetConfig() *Config {
 	// Загружаем .env
-	//if err := godotenv.Load(); err != nil {
-	//	fmt.Println("Не удалось загрузить .env файл, переменные окружения могут отсутствовать")
-	//}
+	if err := godotenv.Load(); err != nil {
+		fmt.Println("Не удалось загрузить .env файл, переменные окружения могут отсутствовать")
+	}
 
 	once.Do(func() {
 		configInstance = &Config{}
@@ -34,27 +42,27 @@ func GetConfig() *Config {
 		}
 
 		// Читаем переменные окружения и заменяем значения в конфиге
-		//overrideWithEnv(configInstance)
+		overrideWithEnv(configInstance)
 	})
 
 	return configInstance
 }
 
 // overrideWithEnv перезаписывает конфигурацию значениями из переменных окружения (если они заданы)
-//func overrideWithEnv(cfg *Config)  {
-//	if user := os.Getenv("POSTGRES_USER"); user != "" {
-//		cfg.DB.User = user
-//	}
-//	if password := os.Getenv("POSTGRES_PASSWORD"); password != "" {
-//		cfg.DB.Password = password
-//	}
-//	if dbName := os.Getenv("POSTGRES_DB"); dbName != "" {
-//		cfg.DB.DBName = dbName
-//	}
-//	if accessToken := os.Getenv("ACCESS_TOKEN"); accessToken != "" {
-//		cfg.Token.Access = accessToken
-//	}
-//	if refreshToken := os.Getenv("REFRESH_TOKEN"); refreshToken != "" {
-//		cfg.Token.Refresh = refreshToken
-//	}
-//}
+func overrideWithEnv(cfg *Config) {
+	//if user := os.Getenv("POSTGRES_USER"); user != "" {
+	//	cfg.DB.User = user
+	//}
+	//if password := os.Getenv("POSTGRES_PASSWORD"); password != "" {
+	//	cfg.DB.Password = password
+	//}
+	//if dbName := os.Getenv("POSTGRES_DB"); dbName != "" {
+	//	cfg.DB.DBName = dbName
+	//}
+	if accessToken := os.Getenv("ACCESS_TOKEN"); accessToken != "" {
+		cfg.Token.Access = accessToken
+	}
+	if refreshToken := os.Getenv("REFRESH_TOKEN"); refreshToken != "" {
+		cfg.Token.Refresh = refreshToken
+	}
+}
