@@ -5,6 +5,7 @@ import (
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/handlers"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/middleware"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/repository"
+	"github.com/Igrok95Ronin/todolist-v1.git/internal/service"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	"github.com/julienschmidt/httprouter"
 	"net/http"
@@ -37,11 +38,17 @@ func main() {
 	// Создаем роутер
 	router := httprouter.New()
 
+	// Слои
+	userRepo := repository.NewUserRepository(sqlDB)
+	userSrv := service.NewUserService(userRepo, cfg)
+
 	// Инициализируем обработчики (handlers) и передаем им зависимости
 	handler, err := handlers.NewHandler(
 		handlers.WithConfig(cfg),
 		handlers.WithLogger(logger),
 		handlers.WithDB(sqlDB),
+		handlers.WithUserRepo(userRepo),
+		handlers.WithUserSrv(userSrv),
 	)
 	if err != nil {
 		logger.Error(err)
@@ -50,6 +57,7 @@ func main() {
 
 	// Обработка cors, Context
 	corsHandler := middleware.CorsSettings().Handler(middleware.RequestContext(router))
+
 	// Запускаем сервер
 	start(corsHandler, cfg, logger)
 

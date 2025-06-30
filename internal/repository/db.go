@@ -4,9 +4,11 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/config"
-	"github.com/Igrok95Ronin/todolist-v1.git/internal/errors"
+	"github.com/Igrok95Ronin/todolist-v1.git/internal/httperror"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	_ "modernc.org/sqlite"
+	"os"
+	"path/filepath"
 	"sync"
 )
 
@@ -47,17 +49,22 @@ func WithLogger(logger *logging.Logger) DBOption {
 func (d *DB) Connect() (*sql.DB, error) {
 	d.once.Do(func() {
 		// В SQLite просто указываем путь к файлу базы данных
-		// TODO: вынести ошиби
-		d.instance, d.err = sql.Open("sqlite", d.cfg.DBPath)
+
+		// БД всегда будет лежать рядом с твоим исполняемым файломи
+		executablePath, _ := os.Executable()
+		dir := filepath.Dir(executablePath)
+		dbPath := filepath.Join(dir, "db.sqlite")
+
+		d.instance, d.err = sql.Open("sqlite", dbPath)
 		if d.err != nil {
-			d.err = fmt.Errorf("%w: %v", errors.ErrDBOpen, d.err)
+			d.err = fmt.Errorf("%w: %v", httperror.ErrDBOpen, d.err)
 			return
 		}
 
 		// Проверим соединение
 		if err := d.instance.Ping(); err != nil {
 			d.instance.Close()
-			d.err = fmt.Errorf("%w: %v", errors.ErrDBPing, err)
+			d.err = fmt.Errorf("%w: %v", httperror.ErrDBPing, err)
 			return
 		}
 
