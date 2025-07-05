@@ -406,3 +406,33 @@ time="2025-06-23T21:35:24+03:00" level=info msg="Сервер запущен н�
 [36mINFO   [0m[2025-06-30 21:23:59]main.go:77 main.start() Сервер запущен на порту: :8080               
 [31mERROR  [0m[2025-06-30 21:24:03]user_handler.go:60 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*UserHandler).register() h <- неверный формат email: s <- email должен содержать символ '@' 
 [31mERROR  [0m[2025-06-30 21:24:10]user_handler.go:65 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*UserHandler).register() h <- внутренняя ошибка сервера: s <- регистрация невозможна: r <- пользователь уже существует 
+[36mINFO   [0m[2025-06-30 21:25:52]db.go:71 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-30 21:25:52]main.go:77 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-30 21:25:56]user_handler.go:76 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*UserHandler).register() 3313e3: Пользователь успешно зарегистрирован 
+[36mINFO   [0m[2025-06-30 21:44:43]db.go:71 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-30 21:44:43]main.go:77 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-30 21:44:44]user_handler.go:76 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*UserHandler).register() 33313e3: Пользователь успешно зарегистрирован 
+[36mINFO   [0m[2025-06-30 21:50:48]db.go:71 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-30 21:50:48]main.go:77 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-30 21:51:50]db.go:71 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-30 21:51:50]main.go:77 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-30 21:51:54]db.go:71 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-30 21:51:54]main.go:77 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-06-30 21:54:51]db.go:71 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-30 21:54:51]main.go:77 main.start() Сервер запущен на порту: :8080               
+[31mERROR  [0m[2025-06-30 21:54:56]user_handler.go:69 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*UserHandler).register() h <- внутренняя ошибка сервера: s <- регистрация невозможна: r <- пользователь уже существует 
+[36mINFO   [0m[2025-06-30 21:56:52]db.go:71 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-06-30 21:56:52]main.go:77 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-07-01 20:34:12]db.go:71 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-07-01 20:34:12]main.go:77 main.start() Сервер запущен на порту: :8080               
+[36mINFO   [0m[2025-07-05 17:35:00]db.go:71 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-07-05 17:35:00]main.go:77 main.start() Сервер запущен на порту: :8080               
+[31mERROR  [0m[2025-07-05 17:35:03]user_handler.go:65 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*UserHandler).register() h <- внутренняя ошибка сервера: s <- регистрация невозможна: r <- пользователь уже существует 
+[36mINFO   [0m[2025-07-05 18:47:54]db.go:71 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-07-05 18:47:54]main.go:77 main.start() Сервер запущен на порту: :8080               
+[31mERROR  [0m[2025-07-05 18:48:06]user_handler.go:68 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*UserHandler).register() h <- внутренняя ошибка сервера: s <- регистрация невозможна: r <- пользователь уже существует 
+[36mINFO   [0m[2025-07-05 18:52:07]db.go:71 github.com/Igrok95Ronin/todolist-v1.git/internal/repository.(*DB).Connect.func1() ✅ Подключение к SQLite установлено           
+[36mINFO   [0m[2025-07-05 18:52:07]main.go:77 main.start() Сервер запущен на порту: :8080               
+[31mERROR  [0m[2025-07-05 18:52:09]user_handler.go:68 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*UserHandler).register() h <- внутренняя ошибка сервера: s <- регистрация невозможна: r <- пользователь уже существует 
+[36mINFO   [0m[2025-07-05 18:53:27]user_handler.go:79 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*UserHandler).register() 33313sse3: Пользователь успешно зарегистрирован 
+[36mINFO   [0m[2025-07-05 18:53:48]user_handler.go:79 github.com/Igrok95Ronin/todolist-v1.git/internal/handlers.(*UserHandler).register() user11: Пользователь успешно зарегистрирован 

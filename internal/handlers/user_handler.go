@@ -3,8 +3,8 @@ package handlers
 import (
 	"encoding/json"
 	"errors"
+	dto "github.com/Igrok95Ronin/todolist-v1.git/internal/dto/request"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/httperror"
-	"github.com/Igrok95Ronin/todolist-v1.git/internal/models"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/service"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/httperrorsend"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
@@ -37,7 +37,7 @@ func NewUserHandler(service service.UserService, logger *logging.Logger) *UserHa
 func (h *UserHandler) register(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	ctx := r.Context()
 
-	var users models.Users
+	var users dto.RegisterRequest
 
 	if err := json.NewDecoder(r.Body).Decode(&users); err != nil {
 		httperrorsend.WriteJSONError(w, httperror.ErrJSONDecode.Error(), http.StatusBadRequest)

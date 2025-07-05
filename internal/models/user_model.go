@@ -1,6 +1,7 @@
 package models
 
 import (
+	dto "github.com/Igrok95Ronin/todolist-v1.git/internal/dto/request"
 	"github.com/golang-jwt/jwt/v4"
 	"time"
 )
@@ -20,4 +21,14 @@ type Users struct {
 type MyClaims struct {
 	UserID int64 `json:"user_id"`
 	jwt.RegisteredClaims
+}
+
+// NewUserFromDTO функция-конвертер
+func NewUserFromDTO(dto dto.RegisterRequest, hashedPassword string) Users {
+	return Users{
+		UserName:     dto.UserName,
+		Email:        dto.Email,
+		PasswordHash: hashedPassword,
+		CreatedAt:    time.Now(),
+	}
 }

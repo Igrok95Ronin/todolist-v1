@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/config"
+	dto "github.com/Igrok95Ronin/todolist-v1.git/internal/dto/request"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/httperror"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/models"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/repository"
@@ -12,12 +13,11 @@ import (
 	"html/template"
 	"regexp"
 	"strings"
-	"time"
 )
 
 // UserService - интерфейс для работы с бизнес-логикой пользователей
 type UserService interface {
-	UserExists(ctx context.Context, users models.Users) error
+	UserExists(ctx context.Context, users dto.RegisterRequest) error
 }
 
 type userService struct {
@@ -33,10 +33,10 @@ func NewUserService(repo repository.UserRepository, cfg *config.Config) UserServ
 }
 
 // UserExists проверяем есть ли пользователь регистрируем нового пользователя
-func (s *userService) UserExists(ctx context.Context, users models.Users) error {
-	userName := strings.TrimSpace(users.UserName)
-	email := strings.TrimSpace(users.Email)
-	password := strings.TrimSpace(users.PasswordHash)
+func (s *userService) UserExists(ctx context.Context, dto dto.RegisterRequest) error {
+	userName := strings.TrimSpace(dto.UserName)
+	email := strings.TrimSpace(dto.Email)
+	password := strings.TrimSpace(dto.Password)
 
 	if userName == "" || email == "" || password == "" {
 		return fmt.Errorf("s <- %w", httperror.ErrMissingFields)
@@ -68,13 +68,9 @@ func (s *userService) UserExists(ctx context.Context, users models.Users) error 
 
 	}
 
+	// преобразуем DTO → модель
 	// Создаём объект нового пользователя
-	newUser := models.Users{
-		UserName:     userName,
-		Email:        email,
-		PasswordHash: hashedPassword,
-		CreatedAt:    time.Now(),
-	}
+	newUser := models.NewUserFromDTO(dto, hashedPassword)
 
 	// Сохраняем пользователя
 	if err = s.repo.Register(ctx, newUser); err != nil {
