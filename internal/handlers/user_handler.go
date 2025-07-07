@@ -34,6 +34,7 @@ func NewUserHandler(service service.UserService, logger *logging.Logger) *UserHa
 	}
 }
 
+// Регистрация пользователя
 func (h *UserHandler) register(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	ctx := r.Context()
 

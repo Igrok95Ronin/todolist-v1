@@ -9,7 +9,7 @@ import (
 // UserRepository - интерфейс для работы с пользователями
 type UserRepository interface {
 	UserExists(ctx context.Context, userName, email string) error
-	Register(ctx context.Context, users models.Users) error
+	Register(ctx context.Context, users *models.Users) error
 }
 
 type userRepository struct {
@@ -30,9 +30,13 @@ func (r *userRepository) UserExists(ctx context.Context, userName, email string)
 }
 
 // Register Сохраняем пользователя в бд
-func (r *userRepository) Register(ctx context.Context, users models.Users) error {
-	// Сохраняем пользователя
-	query := "INSERT INTO users (user_name, email, password_hash, created_at) VALUES ($1,$2,$3, $4)"
-	_, err := r.db.ExecContext(ctx, query, users.UserName, users.Email, users.PasswordHash, users.CreatedAt)
+func (r *userRepository) Register(ctx context.Context, users *models.Users) error {
+	query := "INSERT INTO users (user_name, email, password_hash, created_at) VALUES ($1, $2, $3, $4)"
+	_, err := r.db.ExecContext(ctx, query,
+		users.UserName(),
+		users.Email(),
+		users.PasswordHash(),
+		users.CreatedAt(),
+	)
 	return err
 }

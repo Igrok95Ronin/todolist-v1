@@ -116,4 +116,5 @@ func (h *Handler) RegisterRoutes(router *httprouter.Router) {
 	userHandler := NewUserHandler(h.userSvc, h.logger)
 
 	router.POST("/register", userHandler.register)
+
 }
