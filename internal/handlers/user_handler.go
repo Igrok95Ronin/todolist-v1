@@ -1,11 +1,11 @@
 package handlers
 
 import (
-	"encoding/json"
 	"errors"
 	dto "github.com/Igrok95Ronin/todolist-v1.git/internal/dto/request"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/httperror"
 	"github.com/Igrok95Ronin/todolist-v1.git/internal/service"
+	"github.com/Igrok95Ronin/todolist-v1.git/internal/utils"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/httperrorsend"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/logging"
 	"github.com/Igrok95Ronin/todolist-v1.git/pkg/successful"
@@ -40,7 +40,8 @@ func (h *UserHandler) register(w http.ResponseWriter, r *http.Request, _ httprou
 
 	var users dto.RegisterRequest
 
-	if err := json.NewDecoder(r.Body).Decode(&users); err != nil {
+	// JSONDecoder — обобщённая (generic) функция для декодирования JSON-запроса в любую структуру.
+	if err := utils.JSONDecoder(r, &users); err != nil {
 		httperrorsend.WriteJSONError(w, httperror.ErrJSONDecode.Error(), http.StatusBadRequest)
 		h.logger.Errorf("%s: %s", httperror.ErrJSONDecode, err)
 		return

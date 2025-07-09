@@ -23,7 +23,7 @@ type MyClaims struct {
 	jwt.RegisteredClaims
 }
 
-// NewUser Конструктор
+// NewUserFull Конструктор
 func NewUserFull(id int64, userName, email, passwordHash, refreshToken string, createdAt time.Time) *Users {
 	u := &Users{}
 	u.SetID(id)
@@ -35,7 +35,7 @@ func NewUserFull(id int64, userName, email, passwordHash, refreshToken string, c
 	return u
 }
 
-// NOTE: Set Сеттеры с логикой
+// SetID NOTE: Set Сеттеры с логикой
 func (u *Users) SetID(id int64) {
 	u.id = id
 }
@@ -60,7 +60,7 @@ func (u *Users) SetCreatedAt(createdAt time.Time) {
 	u.createdAt = createdAt
 }
 
-// NOTE: Get Геттеры
+// ID NOTE: Get Геттеры
 func (u *Users) ID() int64 {
 	return u.id
 }

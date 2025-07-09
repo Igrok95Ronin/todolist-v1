@@ -38,7 +38,7 @@ func NewHandler(option ...HandlerOption) (*Handler, error) {
 	return h, nil
 }
 
-// NOTE: Set Сеттеры с логикой
+// SetConfig NOTE: Set Сеттеры с логикой
 func (h *Handler) SetConfig(cfg *config.Config) {
 	h.cfg = cfg
 }
@@ -59,7 +59,7 @@ func (h *Handler) SetUserSrc(userSvc service.UserService) {
 	h.userSvc = userSvc
 }
 
-// NOTE: Get Геттеры
+// Cfg NOTE: Get Геттеры
 func (h *Handler) Cfg() *config.Config {
 	return h.cfg
 }
@@ -80,7 +80,7 @@ func (h *Handler) UserSrc() service.UserService {
 	return h.userSvc
 }
 
-// NOTE: With Функции-опции
+// WithConfig NOTE: With Функции-опции
 func WithConfig(cfg *config.Config) HandlerOption {
 	return func(h *Handler) {
 		h.SetConfig(cfg)
